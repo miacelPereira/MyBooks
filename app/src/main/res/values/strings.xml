@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">My Books</string>
+    <string name="cinquenta_tons"> A estudante de literatura Anastasia Steele, de 21 anos, entrevista o jovem bilionário Christian Grey, como um favor a sua colega de quarto Kate Kavanagh. Ela vê nele um homem atraente e brilhante, e ele fica igualmente fascinado por ela. Embora seja sexualmente inexperiente,</string>
+    <string name="kotlin_android"> A linguagem Kotlin vem ganhando cada vez mais destaque no cenário do desenvolvimento de aplicativos. Projetada para ter uma interoperabilidade total com código Java, Kotlin tem sido a primeira escolha na criação de aplicativos Android, sendo multiparadigma e multiplataforma. </string>
+    <string name="pequeno_principe">Publicado pela primeira vez em 1942 nos Estados Unidos e, três anos mais tarde, na França, O Pequeno Príncipe tornou-se obra de apelo universal, um clássico moderno traduzido para mais de oitenta idiomas.</string>
 </resources>
