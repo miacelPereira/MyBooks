@@ -25,10 +25,16 @@ public class MainActivity extends AppCompatActivity {
         listaLivros = findViewById(R.id.listaLivros);
 
         //Criando cadastros fakes
-        livros = new Livro[]{
+       livros = new Livro[]{
+                /*new Livro(1, Utils.toByteArray(getResources(),R.drawable.pequeno_principe), "O pequeno principe", getString(R.string.pequeno_principe)),
+                new Livro(1, Utils.toByteArray(getResources(),R.drawable.cinquenta_tons_cinza), "O pequeno principe", getString(R.string.cinquenta_tons)),
+                new Livro(1, Utils.toByteArray(getResources(),R.drawable.kotlin_android), "O pequeno principe", getString(R.string.kotlin_android)),
                 new Livro(1, Utils.toByteArray(getResources(),R.drawable.pequeno_principe), "O pequeno principe", getString(R.string.pequeno_principe)),
                 new Livro(1, Utils.toByteArray(getResources(),R.drawable.cinquenta_tons_cinza), "O pequeno principe", getString(R.string.cinquenta_tons)),
                 new Livro(1, Utils.toByteArray(getResources(),R.drawable.kotlin_android), "O pequeno principe", getString(R.string.kotlin_android)),
+                new Livro(1, Utils.toByteArray(getResources(),R.drawable.pequeno_principe), "O pequeno principe", getString(R.string.pequeno_principe)),
+                new Livro(1, Utils.toByteArray(getResources(),R.drawable.cinquenta_tons_cinza), "O pequeno principe", getString(R.string.cinquenta_tons)),
+                new Livro(1, Utils.toByteArray(getResources(),R.drawable.kotlin_android), "O pequeno principe", getString(R.string.kotlin_android)),*/
         };
     }
     
