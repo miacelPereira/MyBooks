@@ -45,5 +45,7 @@
         android:layout_height="wrap_content"
         android:text="Salvar"
         android:onClick="salvarLivro"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/branco"
         />
 </LinearLayout>

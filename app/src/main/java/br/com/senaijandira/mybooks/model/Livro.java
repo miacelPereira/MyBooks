@@ -1,9 +1,18 @@
 package br.com.senaijandira.mybooks.model;
 
+
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+@Entity
 public class Livro {
+
+    @PrimaryKey(autoGenerate = true)
     private int id;
 
     //PARA SALVAR A IMAGEM DA CAPA DO LIVRO
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     private byte[] capa;
 
     private String descricao;
@@ -11,11 +20,8 @@ public class Livro {
 
 
     //Construtores
-    public Livro(){
-
-    }
-    public Livro(int id, byte[] capa, String titulo, String descricao){
-        this.id=id;
+    public Livro(){}
+    public Livro(byte[] capa, String titulo, String descricao){
         this.capa=capa;
         this.titulo=titulo;
         this.descricao=descricao;
