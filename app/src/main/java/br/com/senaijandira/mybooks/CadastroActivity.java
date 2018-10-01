@@ -75,11 +75,8 @@ public class CadastroActivity extends AppCompatActivity {
         String titulo = txtTitulo.getText().toString();
         String descricao = txtDescricao.getText().toString();
         Livro livro = new Livro(capa, titulo, descricao);
-        int tamanhoArray = MainActivity.livros.length;
 
         if(!titulo.equals("") && !descricao.equals("") && livroCapa!=null){
-           /* MainActivity.livros = Arrays.copyOf(MainActivity.livros, tamanhoArray + 1);
-            MainActivity.livros[tamanhoArray] = livro;*/
 
            /* Passando os parametros para o banco de dados */
            myBooksDB.daoLivro().inserir(livro);

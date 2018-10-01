@@ -37,9 +37,35 @@
                     />
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="120dp"
                     android:id="@+id/txtLivroDescricao"
                     android:text="@string/pequeno_principe"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/btnVouLer"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:backgroundTint="@color/verde"
+                        android:text="Vou ler!"
+                        android:textAllCaps="false"
+                        android:textColor="@color/branco" />
+                    <Button
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Já li!"
+                        android:textAllCaps="false"
+                        android:id="@+id/btnJaLi"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:textColor="@color/branco"
+                        android:layout_marginLeft="10dp"
+                        />
+                </LinearLayout>
             </LinearLayout>
             <ImageView
                 android:layout_width="wrap_content"
@@ -47,8 +73,6 @@
                 android:src="@drawable/delete"
                 android:id="@+id/imgDeleteLivro"
                 android:layout_margin="5dp"
-
-
                 />
         </LinearLayout>
     </android.support.v7.widget.CardView>
