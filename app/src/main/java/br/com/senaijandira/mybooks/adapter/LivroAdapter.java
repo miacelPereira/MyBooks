@@ -16,6 +16,7 @@ import br.com.senaijandira.mybooks.R;
 import br.com.senaijandira.mybooks.Utils;
 import br.com.senaijandira.mybooks.db.MyBooksDataBase;
 import br.com.senaijandira.mybooks.model.Livro;
+import br.com.senaijandira.mybooks.model.LivrosLidos;
 
 public class LivroAdapter extends ArrayAdapter<Livro>{
 
@@ -61,5 +62,9 @@ public class LivroAdapter extends ArrayAdapter<Livro>{
     private void deletarLivro(Livro livro){
         myBooksDB.daoLivro().deletar(livro);
         remove(livro);
+    }
+    /* Adicionando o livro na table LivrosLidos */
+    private void adicionarLivroLidos(LivrosLidos livrosLidos){
+        myBooksDB.daoLivrosLidos().inserirLivrosLidos(livrosLidos);
     }
 }

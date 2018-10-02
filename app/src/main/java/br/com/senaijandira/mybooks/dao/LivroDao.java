@@ -14,12 +14,12 @@ public interface LivroDao {
     @Insert
     void inserir(Livro l);
 
-    @Update
-    void atualizar(Livro l);
-
     @Delete
     void deletar(Livro l);
 
-    @Query("SELECT * FROM livro")
+    @Update
+    void atualizar(Livro l);
+
+    @Query("SELECT * FROM livros")
     Livro[] selecionarTodos();
 }
