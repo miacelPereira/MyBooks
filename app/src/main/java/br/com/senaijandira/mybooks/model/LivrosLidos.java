@@ -13,6 +13,7 @@ public class LivrosLidos {
     @ForeignKey(entity = Livro.class , childColumns = "idGeral", parentColumns = "id")
     private int idGeral;
 
+    // GET e SET
     public void setIdLidos(int idLidos) {
         this.idLidos = idLidos;
     }
@@ -21,6 +22,15 @@ public class LivrosLidos {
         return idLidos;
     }
 
+    public int getIdGeral() {
+        return idGeral;
+    }
+
+    public void setIdGeral(int idGeral) {
+        this.idGeral = idGeral;
+    }
+
+    // CONSTRUTOR
     public LivrosLidos(){}
     public LivrosLidos(int idGeral){}
 }

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ public class LivroAdapter extends ArrayAdapter<Livro>{
 
     public static Livro[] livros;
     private MyBooksDataBase myBooksDB;
+    private LivrosLidos livrosLidos;
 
     public LivroAdapter (Context ctx, MyBooksDataBase myBooksDB){
         super(ctx, 0 , new ArrayList<Livro>());
@@ -33,9 +35,10 @@ public class LivroAdapter extends ArrayAdapter<Livro>{
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         View v = convertView;
+
         /* Pegando o arquivo xml */
         if(v == null){
-            v = LayoutInflater.from(getContext()).inflate(R.layout.livro_layout,parent,false);
+            v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_todos_livros,parent,false);
         }
         final Livro  livro = getItem(position);
 
@@ -43,11 +46,19 @@ public class LivroAdapter extends ArrayAdapter<Livro>{
         TextView txtLivroTitulo = v.findViewById(R.id.txtLivroTitulo);
         TextView txtLivroDescricao = v.findViewById(R.id.txtLivroDescricao);
         ImageView imgDeleteLivro = v.findViewById(R.id.imgDeleteLivro);
+        Button btnJaLi = v.findViewById(R.id.btnJaLi);
 
        imgDeleteLivro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 deletarLivro(livro);
+            }
+        });
+
+        btnJaLi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 
@@ -63,8 +74,9 @@ public class LivroAdapter extends ArrayAdapter<Livro>{
         myBooksDB.daoLivro().deletar(livro);
         remove(livro);
     }
+
     /* Adicionando o livro na table LivrosLidos */
-    private void adicionarLivroLidos(LivrosLidos livrosLidos){
+    private void adicionarLivroLidos(Livro livro, LivrosLidos livrosLidos){
         myBooksDB.daoLivrosLidos().inserirLivrosLidos(livrosLidos);
     }
 }
