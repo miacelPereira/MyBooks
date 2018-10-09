@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,7 @@ public class LivroAdapter extends ArrayAdapter<Livro>{
     private MyBooksDataBase myBooksDB;
     private LivrosLidos livrosLidos;
 
+
     public LivroAdapter (Context ctx, MyBooksDataBase myBooksDB){
         super(ctx, 0 , new ArrayList<Livro>());
         this.myBooksDB = myBooksDB;
@@ -38,7 +40,7 @@ public class LivroAdapter extends ArrayAdapter<Livro>{
 
         /* Pegando o arquivo xml */
         if(v == null){
-            v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_todos_livros,parent,false);
+            v = LayoutInflater.from(getContext()).inflate(R.layout.livro_layout,parent,false);
         }
         final Livro  livro = getItem(position);
 
@@ -58,7 +60,12 @@ public class LivroAdapter extends ArrayAdapter<Livro>{
         btnJaLi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Context contexto = getContext();
+                String texto = "Foi porra!";
+                int duracao = Toast.LENGTH_SHORT;
 
+                Toast toast = Toast.makeText(contexto, texto,duracao);
+                toast.show();
             }
         });
 

@@ -1,10 +1,11 @@
 package br.com.senaijandira.mybooks;
 
-import android.app.Fragment;
+
 import android.arch.persistence.room.Room;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +28,7 @@ public class FragmentTodosLivros extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_livro_lidos, container, false);
+        View v = inflater.inflate(R.layout.fragment_todos_livros, container, false);
 
         myBooksDB = Room.databaseBuilder(getActivity(), MyBooksDataBase.class, Utils.DATABASE_NAME).fallbackToDestructiveMigration().allowMainThreadQueries().build();
 
@@ -37,10 +38,12 @@ public class FragmentTodosLivros extends Fragment {
 
         lstViewLivros.setAdapter(adapter);
 
+        livros = myBooksDB.daoLivro().selecionarTodos();
+
+        adapter.addAll(livros);
+
         return v;
     }
-
-
 }
 
 

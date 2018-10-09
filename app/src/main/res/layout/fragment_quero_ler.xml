@@ -5,10 +5,8 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/lstViewQueroLer"
+        android:id="@+id/lstViewLivrosQueroLer"
         android:layout_marginTop="50dp"
         android:background="@color/vermelho">
     </ListView>
-
-
 </android.support.constraint.ConstraintLayout>
