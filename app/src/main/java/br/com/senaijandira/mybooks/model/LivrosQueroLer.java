@@ -10,7 +10,7 @@ public class LivrosQueroLer {
     @PrimaryKey (autoGenerate = true)
     private int idLivrosQueroLer;
 
-    @ForeignKey(entity = Livro.class, childColumns = "idGeral", parentColumns = "id")
+    @ForeignKey(entity = Livro.class, childColumns = "idGeral", parentColumns = "id", deferred = true)
     private int idGeral;
 
 

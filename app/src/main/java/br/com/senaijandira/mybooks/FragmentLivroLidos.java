@@ -39,7 +39,7 @@ public class FragmentLivroLidos extends Fragment {
 
         lstViewLivrosQueroLer.setAdapter(adapter);
 
-        livros = myBooksDB.daoLivro().selecionarTodos();
+        livros = myBooksDB.daoLivro().selecionarTodosLivrosLidos();
 
         adapter.addAll(livros);
 

@@ -74,7 +74,7 @@ public class CadastroActivity extends AppCompatActivity {
 
         String titulo = txtTitulo.getText().toString();
         String descricao = txtDescricao.getText().toString();
-        Livro livro = new Livro(capa, titulo, descricao);
+        Livro livro = new Livro(capa, titulo, descricao, false);
 
         if(!titulo.equals("") && !descricao.equals("") && livroCapa!=null){
 

@@ -1,6 +1,7 @@
 package br.com.senaijandira.mybooks.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -14,11 +15,13 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import br.com.senaijandira.mybooks.CadastroActivity;
 import br.com.senaijandira.mybooks.R;
 import br.com.senaijandira.mybooks.Utils;
 import br.com.senaijandira.mybooks.db.MyBooksDataBase;
 import br.com.senaijandira.mybooks.model.Livro;
 import br.com.senaijandira.mybooks.model.LivrosLidos;
+import br.com.senaijandira.mybooks.model.LivrosQueroLer;
 
 public class LivroAdapter extends ArrayAdapter<Livro>{
 
@@ -48,7 +51,9 @@ public class LivroAdapter extends ArrayAdapter<Livro>{
         TextView txtLivroTitulo = v.findViewById(R.id.txtLivroTitulo);
         TextView txtLivroDescricao = v.findViewById(R.id.txtLivroDescricao);
         ImageView imgDeleteLivro = v.findViewById(R.id.imgDeleteLivro);
+        ImageView imgEditarLivro = v.findViewById(R.id.imgEditarLivro);
         Button btnJaLi = v.findViewById(R.id.btnJaLi);
+        Button btnVouLer = v.findViewById(R.id.btnVouLer);
 
        imgDeleteLivro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,18 +61,34 @@ public class LivroAdapter extends ArrayAdapter<Livro>{
                 deletarLivro(livro);
             }
         });
-
+        imgEditarLivro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
         btnJaLi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Context contexto = getContext();
-                String texto = "Foi porra!";
-                int duracao = Toast.LENGTH_SHORT;
 
-                Toast toast = Toast.makeText(contexto, texto,duracao);
+                LivrosLidos livroLido = new LivrosLidos();
+                livroLido.setIdGeral(livro.getId());
+                myBooksDB.daoLivrosLidos().inserirLivrosLidos(livroLido);
+                Toast toast = Toast.makeText(getContext(), "Adicionado em Livros lidos",Toast.LENGTH_SHORT);
                 toast.show();
             }
         });
+        btnVouLer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LivrosQueroLer ler = new LivrosQueroLer();
+                ler.setIdGeral(livro.getId());
+                myBooksDB.daoLivrosQueroLer().inserirQueroLer(ler);
+                Toast toast = Toast.makeText(getContext(), "Adicionado em Quero ler",Toast.LENGTH_SHORT);
+                toast.show();
+
+            }
+        });
+
 
         imgLivroCapa.setImageBitmap(Utils.toBitmap(livro.getCapa()));
         txtLivroTitulo.setText(livro.getTitulo());
@@ -85,5 +106,10 @@ public class LivroAdapter extends ArrayAdapter<Livro>{
     /* Adicionando o livro na table LivrosLidos */
     private void adicionarLivroLidos(Livro livro, LivrosLidos livrosLidos){
         myBooksDB.daoLivrosLidos().inserirLivrosLidos(livrosLidos);
+    }
+
+    private void adicionarLivroQuero(Livro livro, LivrosQueroLer queroLer){
+        myBooksDB.daoLivrosQueroLer().inserirQueroLer(queroLer);
+
     }
 }

@@ -21,7 +21,7 @@ public class Livro {
 
     //Construtores
     public Livro(){}
-    public Livro(byte[] capa, String titulo, String descricao){
+    public Livro(byte[] capa, String titulo, String descricao, Boolean lista){
         this.capa=capa;
         this.titulo=titulo;
         this.descricao=descricao;

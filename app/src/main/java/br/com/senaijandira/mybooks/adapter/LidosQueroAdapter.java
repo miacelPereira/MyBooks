@@ -17,6 +17,8 @@ import br.com.senaijandira.mybooks.R;
 import br.com.senaijandira.mybooks.Utils;
 import br.com.senaijandira.mybooks.db.MyBooksDataBase;
 import br.com.senaijandira.mybooks.model.Livro;
+import br.com.senaijandira.mybooks.model.LivrosLidos;
+import br.com.senaijandira.mybooks.model.LivrosQueroLer;
 
 public class LidosQueroAdapter extends ArrayAdapter<Livro> {
 
@@ -48,13 +50,14 @@ public class LidosQueroAdapter extends ArrayAdapter<Livro> {
         imgLivroQueroLidos.setImageBitmap(Utils.toBitmap(livro.getCapa()));
         txtQueroLidoTitulo.setText(livro.getTitulo());
         txtQueroLidoDescricao.setText(livro.getDescricao());
-         imgDeleteLivroLidos.setOnClickListener(new View.OnClickListener() {
+
+        imgDeleteLivroLidos.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                 Context contexto = getContext();
-                 String texto = "Foi";
-                 int duracao = Toast.LENGTH_SHORT;
-                 Toast toast = Toast.makeText(contexto, texto,duracao);
+                 LivrosLidos lido = new LivrosLidos();
+                 lido.setIdGeral(livro.getId());
+                 myBooksDB.daoLivrosLidos().deletarLivroLidos(lido);
+                 Toast toast = Toast.makeText(getContext(), "Deletado", Toast.LENGTH_SHORT);
                  toast.show();
              }
          });

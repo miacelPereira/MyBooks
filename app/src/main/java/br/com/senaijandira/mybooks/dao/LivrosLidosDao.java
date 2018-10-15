@@ -16,6 +16,4 @@ public interface LivrosLidosDao {
     @Delete
     void deletarLivroLidos(LivrosLidos livrosLidos);
 
-    @Query("SELECT * FROM livrosLidos")
-    LivrosLidos[] selecionarTodosLivrosLidos();
 }
