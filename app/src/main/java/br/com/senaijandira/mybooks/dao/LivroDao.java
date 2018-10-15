@@ -20,6 +20,9 @@ public interface LivroDao {
     @Update
     void atualizar(Livro l);
 
+    @Query("UPDATE livros SET lista = :lista WHERE id = :id")
+    void updateLista(Boolean lista, int id);
+
     @Query("SELECT * FROM livros")
     Livro[] selecionarTodos();
 
@@ -28,4 +31,7 @@ public interface LivroDao {
 
     @Query("SELECT livros.* from livros, livrosQueroLer WHERE livros.id = livrosQueroLer.idGeral")
     Livro[]selecionarTodosLivrosQuero();
+
+    @Query("SELECT livros.* FROM livros WHERE livros.id = :id")
+    Livro selecionarLivro(int id);
 }

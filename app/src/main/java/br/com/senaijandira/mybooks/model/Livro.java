@@ -17,6 +17,7 @@ public class Livro {
 
     private String descricao;
     private String titulo;
+    private Boolean lista;
 
 
     //Construtores
@@ -25,6 +26,7 @@ public class Livro {
         this.capa=capa;
         this.titulo=titulo;
         this.descricao=descricao;
+        this.lista=lista;
     }
 
     // GET's e SET's
@@ -60,4 +62,7 @@ public class Livro {
         this.titulo = titulo;
     }
 
+    public Boolean getLista() { return lista; }
+
+    public void setLista(Boolean lista) { this.lista = lista; }
 }

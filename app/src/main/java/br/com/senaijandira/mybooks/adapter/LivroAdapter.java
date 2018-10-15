@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import br.com.senaijandira.mybooks.CadastroActivity;
 import br.com.senaijandira.mybooks.R;
 import br.com.senaijandira.mybooks.Utils;
 import br.com.senaijandira.mybooks.db.MyBooksDataBase;
@@ -64,28 +63,43 @@ public class LivroAdapter extends ArrayAdapter<Livro>{
         imgEditarLivro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getContext(), EditarLivro.class);
+                intent.putExtra("livro", livro.getId());
+                getContext().startActivity(intent);
             }
         });
         btnJaLi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                LivrosLidos livroLido = new LivrosLidos();
-                livroLido.setIdGeral(livro.getId());
-                myBooksDB.daoLivrosLidos().inserirLivrosLidos(livroLido);
-                Toast toast = Toast.makeText(getContext(), "Adicionado em Livros lidos",Toast.LENGTH_SHORT);
-                toast.show();
+                if(!livro.getLista()) {
+                    myBooksDB.daoLivro().updateLista(true, livro.getId());
+                    livro.setLista(true);
+                    LivrosLidos livroLido = new LivrosLidos();
+                    livroLido.setIdGeral(livro.getId());
+                    myBooksDB.daoLivrosLidos().inserirLivrosLidos(livroLido);
+                    Toast toast = Toast.makeText(getContext(), "Adicionado em Livros lidos", Toast.LENGTH_SHORT);
+                    toast.show();
+                }else{
+                    Toast toast = Toast.makeText(getContext(), "Este livro já está em uma lista", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
         });
         btnVouLer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LivrosQueroLer ler = new LivrosQueroLer();
-                ler.setIdGeral(livro.getId());
-                myBooksDB.daoLivrosQueroLer().inserirQueroLer(ler);
-                Toast toast = Toast.makeText(getContext(), "Adicionado em Quero ler",Toast.LENGTH_SHORT);
-                toast.show();
-
+                if(!livro.getLista()) {
+                    myBooksDB.daoLivro().updateLista(true, livro.getId());
+                    livro.setLista(true);
+                    LivrosQueroLer ler = new LivrosQueroLer();
+                    ler.setIdGeral(livro.getId());
+                    myBooksDB.daoLivrosQueroLer().inserirQueroLer(ler);
+                    Toast toast = Toast.makeText(getContext(), "Adicionado em Quero ler", Toast.LENGTH_SHORT);
+                    toast.show();
+                }else{
+                        Toast toast = Toast.makeText(getContext(), "Este livro já está em uma lista", Toast.LENGTH_SHORT);
+                        toast.show();
+                }
             }
         });
 
@@ -103,13 +117,4 @@ public class LivroAdapter extends ArrayAdapter<Livro>{
         remove(livro);
     }
 
-    /* Adicionando o livro na table LivrosLidos */
-    private void adicionarLivroLidos(Livro livro, LivrosLidos livrosLidos){
-        myBooksDB.daoLivrosLidos().inserirLivrosLidos(livrosLidos);
-    }
-
-    private void adicionarLivroQuero(Livro livro, LivrosQueroLer queroLer){
-        myBooksDB.daoLivrosQueroLer().inserirQueroLer(queroLer);
-
-    }
 }

@@ -1,7 +1,6 @@
 package br.com.senaijandira.mybooks.dao;
 
 import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
@@ -13,7 +12,10 @@ public interface LivrosLidosDao {
     @Insert
     void inserirLivrosLidos(LivrosLidos livrosLidos);
 
-    @Delete
-    void deletarLivroLidos(LivrosLidos livrosLidos);
+    @Query("delete from livrosLidos where idGeral = :idGeral")
+    void deletarLivroLidos(int idGeral);
+
+    @Query("select livrosLidos.* from livrosLidos where idGeral = :id ")
+    int verificaridGeral(int id);
 
 }

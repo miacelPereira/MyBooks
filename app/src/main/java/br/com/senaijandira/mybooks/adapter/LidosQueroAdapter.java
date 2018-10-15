@@ -17,8 +17,6 @@ import br.com.senaijandira.mybooks.R;
 import br.com.senaijandira.mybooks.Utils;
 import br.com.senaijandira.mybooks.db.MyBooksDataBase;
 import br.com.senaijandira.mybooks.model.Livro;
-import br.com.senaijandira.mybooks.model.LivrosLidos;
-import br.com.senaijandira.mybooks.model.LivrosQueroLer;
 
 public class LidosQueroAdapter extends ArrayAdapter<Livro> {
 
@@ -54,11 +52,22 @@ public class LidosQueroAdapter extends ArrayAdapter<Livro> {
         imgDeleteLivroLidos.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                 LivrosLidos lido = new LivrosLidos();
-                 lido.setIdGeral(livro.getId());
-                 myBooksDB.daoLivrosLidos().deletarLivroLidos(lido);
-                 Toast toast = Toast.makeText(getContext(), "Deletado", Toast.LENGTH_SHORT);
-                 toast.show();
+                 //Seguinte, se a pessoa clicou na nessa lixeira ela está em ou em livro lidos ou em quero ler, nesse caso o programa vai tentar excluir de uma tabela, se não conseguir tenta da outra
+                 if(myBooksDB.daoLivrosLidos().verificaridGeral(livro.getId()) != 0 ) {
+                    myBooksDB.daoLivrosLidos().deletarLivroLidos(livro.getId());
+                    myBooksDB.daoLivro().updateLista(false, livro.getId());
+                    remove(livro);
+                    Toast toast = Toast.makeText(getContext(), "Deletado de livro lidos", Toast.LENGTH_SHORT);
+                    toast.show();
+
+                 }else{
+                     myBooksDB.daoLivrosQueroLer().deletarQueroLer(livro.getId());
+                     myBooksDB.daoLivro().updateLista(false, livro.getId());
+                     remove(livro);
+                     Toast toast = Toast.makeText(getContext(), "Deletado de Quero ler", Toast.LENGTH_SHORT);
+                     toast.show();
+                }
+
              }
          });
         return v;
