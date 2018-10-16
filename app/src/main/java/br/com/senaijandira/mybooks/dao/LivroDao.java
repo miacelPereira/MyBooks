@@ -23,6 +23,9 @@ public interface LivroDao {
     @Query("UPDATE livros SET lista = :lista WHERE id = :id")
     void updateLista(Boolean lista, int id);
 
+    @Query("SELECT livros.lista FROM livros WHERE id = :id")
+    Boolean faseLista(int id);
+
     @Query("SELECT * FROM livros")
     Livro[] selecionarTodos();
 

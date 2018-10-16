@@ -1,4 +1,4 @@
-package br.com.senaijandira.mybooks.adapter;
+package br.com.senaijandira.mybooks;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -15,9 +15,6 @@ import android.widget.ImageView;
 
 import java.io.InputStream;
 
-import br.com.senaijandira.mybooks.MainActivity;
-import br.com.senaijandira.mybooks.R;
-import br.com.senaijandira.mybooks.Utils;
 import br.com.senaijandira.mybooks.db.MyBooksDataBase;
 import br.com.senaijandira.mybooks.model.Livro;
 
@@ -56,7 +53,6 @@ public class EditarLivro extends AppCompatActivity{
 
         intent.setType("image/*");
         startActivityForResult(Intent.createChooser(intent, "Selecione uma imagem"), COD_REQ_GALERIA);
-
     }
 
     @Override
@@ -69,23 +65,22 @@ public class EditarLivro extends AppCompatActivity{
                 livroCapa = BitmapFactory.decodeStream(input);
                 imgLivroCapa.setImageBitmap(livroCapa);
 
-
             }catch (Exception ex){
                 ex.printStackTrace();
             }
         }
     }
-
     public void salvarLivro(View view) {
         byte[] capa = new byte[0];
 
         if(livroCapa != null) {
             capa = Utils.toByteArray(livroCapa);
         }
-
+        Boolean faseLista = myBooksDB.daoLivro().faseLista(idLivro);
         String titulo = txtTitulo.getText().toString();
         String descricao = txtDescricao.getText().toString();
-        Livro livro = new Livro(capa, titulo, descricao, false);
+
+        Livro livro = new Livro(idLivro, capa, titulo, descricao,faseLista);
 
         if(!titulo.equals("") && !descricao.equals("") && livroCapa!=null){
 
@@ -113,7 +108,5 @@ public class EditarLivro extends AppCompatActivity{
         }
         builder.create();
         builder.show();
-
-
     }
 }

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import br.com.senaijandira.mybooks.R;
 import br.com.senaijandira.mybooks.Utils;
 import br.com.senaijandira.mybooks.db.MyBooksDataBase;
+import br.com.senaijandira.mybooks.EditarLivro;
 import br.com.senaijandira.mybooks.model.Livro;
 import br.com.senaijandira.mybooks.model.LivrosLidos;
 import br.com.senaijandira.mybooks.model.LivrosQueroLer;
@@ -57,7 +58,14 @@ public class LivroAdapter extends ArrayAdapter<Livro>{
        imgDeleteLivro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deletarLivro(livro);
+                if(!livro.getLista()) {
+                    deletarLivro(livro);
+                    Toast toast = Toast.makeText(getContext(), "Livro excluido", Toast.LENGTH_SHORT);
+                    toast.show();
+                }else{
+                    Toast toast = Toast.makeText(getContext(), "Este livro está em uma lista", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
         });
         imgEditarLivro.setOnClickListener(new View.OnClickListener() {

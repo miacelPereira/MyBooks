@@ -28,6 +28,13 @@ public class Livro {
         this.descricao=descricao;
         this.lista=lista;
     }
+    public Livro(int id, byte[] capa, String titulo, String descricao, Boolean lista){
+        this.id= id;
+        this.capa=capa;
+        this.titulo=titulo;
+        this.descricao=descricao;
+        this.lista=lista;
+    }
 
     // GET's e SET's
     public int getId() {
